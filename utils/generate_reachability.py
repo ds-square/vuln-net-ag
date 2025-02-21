@@ -2,8 +2,8 @@ import json, random, uuid
 import numpy as np
 import networkx as nx
 
+from utils.dump_nvd import get_pool_vulnerabilities
 import models.NetworkModel as net
-import config
 
 def build_lan_topology(percentage_link,N):
     edges=[]
@@ -107,18 +107,19 @@ def build_distribution(distro, num_nodes, num_vulns):
         for i in range(1,num_nodes+1): vulns_distro[i] = num_vulns
         return vulns_distro
 
+
 """
 Assign vulnerabilities per host considering diversity distribution
 """
 def build_diversity(vulns_per_host,percentage_div):
     max_vulns = max(vulns_per_host.values())
     tot_vulns = sum(vulns_per_host.values())
-    full_pool = config.get_pool_vulnerabilities(tot_vulns)
+    full_pool_win, full_pool_lin = get_pool_vulnerabilities(tot_vulns)
 
     vuln_inventory = []
     dict_vuln_host = {}
     if percentage_div == 0:
-        equal_pool = full_pool[0:max_vulns]
+        equal_pool = full_pool_win[0:max_vulns]
         for k in vulns_per_host.keys():
             n_vuln = vulns_per_host[k]
             vulnerabilities = equal_pool[0:n_vuln]
@@ -126,9 +127,13 @@ def build_diversity(vulns_per_host,percentage_div):
             dict_vuln_host[k] = [o["id"] for o in vulnerabilities]
 
     elif percentage_div == 1:
-        diverse_pool = full_pool[0:tot_vulns]
+        diverse_pool_w = full_pool_win[0:tot_vulns]
+        diverse_pool_l = full_pool_lin[0:tot_vulns]
         last_index = 0
         for k in vulns_per_host.keys():
+            if k%2==0: diverse_pool=diverse_pool_w
+            else: diverse_pool=diverse_pool_l
+            
             n_vuln = vulns_per_host[k]
             vulnerabilities = diverse_pool[last_index:last_index+n_vuln]
             vuln_inventory+=vulnerabilities
@@ -137,10 +142,14 @@ def build_diversity(vulns_per_host,percentage_div):
 
     else:
         split_index = round(max_vulns*(1-percentage_div))+1
-        equal_pool = full_pool[0:split_index]
-        diverse_pool = full_pool[split_index+1:]
+        equal_pool = full_pool_win[0:split_index]
+        diverse_pool_w = full_pool_win[split_index+1:]
+        diverse_pool_l = full_pool_lin[split_index+1:]
         last_index = 0
         for k in vulns_per_host.keys():
+            if k%2==0: diverse_pool=diverse_pool_w
+            else: diverse_pool=diverse_pool_l
+            
             n_vuln = vulns_per_host[k]
             sub_split_equal = round(n_vuln*(1-percentage_div))
             sub_split_diverse = round(n_vuln*percentage_div)
@@ -192,8 +201,7 @@ def write_reachability(base_folder,filename):
         for vuln in vuln_inventory:
             cpes_k = []
             if 'cpe' in vuln.keys():
-                for cpe in vuln['cpe']:
-                    cpes_k.append(cpe['criteria'])
+                cpes_k.append(vuln['cpe'])
         service_k = net.Service("Workstation "+str(k), cpes_k, vulns_by_host[k])
         port_k = net.Port(8080, "open", "TCP", [service_k])
         devices.append({

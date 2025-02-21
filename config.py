@@ -1,43 +1,27 @@
-import json, csv, os
+import csv, os
 
-### Benchmark settings
+### [User]
+nvd_key = "e0703d0a-7fee-4c0c-ae24-5112c3a55287"
+
+### [System]
 num_cores = 3
 timeout = 7000
-generate_all_paths = True ### NOTICE: If True, it will be much more expensive
 num_entry_points = [1,5,25,50]
-pruning_lens = [2,3,5,7]
 
-### Inventories
-cpe_file = "inventory/services.json"
-cve_file1 = "inventory/vulnerabilities1.json"
-cve_file2 = "inventory/vulnerabilities2.json"
-cve_file3 = "inventory/vulnerabilities3.json"
+### [Benchmark]
+OS=['Windows 10','Ubuntu Linux 22.10', 'Debian Linux 11']
+SERVICES=['MySQL','PostgreSQL','Neo4','Azure','AWS','Apache','HTTP Web Server','nginx']
+nhosts = [10,25]#,50,75,100,150,250,500]
+nvulns = [10,25]#,50,75,100,150,250,500]
+topologies = ['mesh','random']#,'star','ring','tree','powerlaw','lan0','lan25','lan50']
+distro = ['uniform','poisson']#,'bernoulli','binomial']
+diversity = [0,0.25]#,0.5,0.75,1]
 
-def get_pool_vulnerabilities(tot_vuln):
-    if tot_vuln <= 14500:
-        with open(cve_file1) as f1:
-            return json.load(f1)["vulnerabilities"]
-    elif 14500 < tot_vuln <= 29000:
-        with open(cve_file1) as f1, open(cve_file2) as f2:
-            vulns1 = json.load(f1)["vulnerabilities"]
-            vulns2 = json.load(f2)["vulnerabilities"]
-            return vulns1+vulns2
-    else:
-        with open(cve_file1) as f1, open(cve_file2) as f2, open(cve_file3) as f3:
-            vulns1 = json.load(f1)["vulnerabilities"]
-            vulns2 = json.load(f2)["vulnerabilities"]
-            vulns3 = json.load(f3)["vulnerabilities"]
-            return vulns1+vulns2+vulns3
+### [FileSystem]
+NVD_DUMP_FOLDER = "nvd_dump/"
+cpe_dump_file = NVD_DUMP_FOLDER+"cpe.json"
+cve_dump_file = NVD_DUMP_FOLDER+"cve.json"
 
-### Reachability configuration
-nhosts = [10,25,50,75,100,150,250,500]
-nvulns = [10,25,50,75,100,150,250,500]
-topologies = ['mesh','random','star','ring','tree','powerlaw','lan0','lan25','lan50']
-distro = ['uniform','poisson','bernoulli','binomial']
-diversity = [0,0.25,0.5,0.75,1] #from all equal (0) to all diverse (1)
-
-
-### File storage setting
 NETWORK_FOLDER = "networks/"
 MULVAL_IN_FOLDER = "mulval_inputs_few/"
 MULVAL_OUT_FOLDER = "mulval_outputs/"
@@ -54,6 +38,12 @@ mulval_time_file = STATS_FOLDER+"time_mulval.txt"
 graph_stats_file = "graph_statistics.csv"
 generation_stats_file = "generation_statistics.csv"
 
+### [AttackGraph]
+ag_models = ["TVA","NETSPA"] # without MulVAL
+# ag_models = ["NETSPA","TVA","MULVAL"] # with MulVAL
+
+
+### [Utils]
 def create_graph_stats_file(clean_stats=False):
     if not os.path.exists(STATS_FOLDER): os.makedirs(STATS_FOLDER)
     if not os.path.exists(STATS_FOLDER+graph_stats_file) or clean_stats:
@@ -69,10 +59,6 @@ def create_generation_stats_file(clean_stats=False):
             writer = csv.writer(f)
             writer.writerow(['model','num_host','num_vuln','topology','distro_vuln',
                              'diversity_vuln','num_entries','num_targets','num_paths','generation_time','generation_paths'])
-
-### Attack Graph models settings
-ag_models = ["TVA","NETSPA"] # without MulVAL
-# ag_models = ["NETSPA","TVA","MULVAL"] # with MulVAL
 
 def get_graph_structure_filename(model):
     return model+"_graph_structure.csv"

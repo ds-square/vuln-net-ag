@@ -1,0 +1,2236 @@
+{
+  "vulnerabilities": [
+    {
+      "id": "CVE-2008-5745",
+      "sourceIdentifier": "cve@mitre.org",
+      "published": "2008-12-29T15:24:23.593",
+      "lastModified": "2024-11-21T00:54:47.683",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Integer overflow in quartz.dll in the DirectShow framework in Microsoft Windows Media Player (WMP) 9, 10, and 11, including 11.0.5721.5260, allows remote attackers to cause a denial of service (application crash) via a crafted (1) WAV, (2) SND, or (3) MID file. NOTE: this has been incorrectly reported as a code-execution vulnerability. NOTE: it is not clear whether this issue is related to CVE-2008-4927."
+        },
+        {
+          "lang": "es",
+          "value": "Desbordamiento de entero en Microsoft Windows Media Player 9, 10 y 11, permite a atacantes remotos ejecutar c\u00f3digo de su elecci\u00f3n a trav\u00e9s de ficheros (1) WAV, (2) SND, o (3) MID manipulados. NOTA: no est\u00e1 claro si esta vulnerabilidad est\u00e1 relacionada con el CVE-2008-4927 o CVE-2008-2253."
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+              "baseScore": 4.3,
+              "accessVector": "NETWORK",
+              "accessComplexity": "MEDIUM",
+              "authentication": "NONE",
+              "confidentialityImpact": "NONE",
+              "integrityImpact": "NONE",
+              "availabilityImpact": "PARTIAL"
+            },
+            "baseSeverity": "MEDIUM",
+            "exploitabilityScore": 8.6,
+            "impactScore": 2.9,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": false,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": true
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "CWE-189"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:9:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "3778BBD3-6C58-46DF-B1EB-ED02513CA8D6"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C28602CC-7866-4C30-B518-055923599A18"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:11:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "B27BB8B0-BC24-4A3F-A18B-63D57AB4799B"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://securityreason.com/securityalert/4823",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/499579/100/0/threaded",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/33018",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Exploit"
+          ]
+        },
+        {
+          "url": "http://www.securitytracker.com/id?1021495",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/47664",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "https://www.exploit-db.com/exploits/7585",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://securityreason.com/securityalert/4823",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/499579/100/0/threaded",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/33018",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Exploit"
+          ]
+        },
+        {
+          "url": "http://www.securitytracker.com/id?1021495",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/47664",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://www.exploit-db.com/exploits/7585",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        }
+      ],
+      "evaluatorImpact": "This bug cannot be leveraged for code execution according to the vendor.  \r\n\r\nSource 1 - http://blogs.technet.com/swi/archive/2008/12/29/windows-media-player-crash-not-exploitable-for-code-execution.aspx\r\n\r\nSource 2 - http://blogs.technet.com/msrc/archive/2008/12/29/questions-about-vulnerability-claim-in-windows-media-player.aspx",
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    },
+    {
+      "id": "CVE-2005-1574",
+      "sourceIdentifier": "cve@mitre.org",
+      "published": "2005-05-14T04:00:00.000",
+      "lastModified": "2024-11-20T23:57:38.767",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Windows Media Player 9 and 10, in certain cases, allows content protected by Windows Media Digital Rights Management (WMDRM) to redirect the user to a web site to obtain a license, even when the \"Acquire licenses automatically for protected content\" setting is not enabled."
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+              "baseScore": 7.5,
+              "accessVector": "NETWORK",
+              "accessComplexity": "LOW",
+              "authentication": "NONE",
+              "confidentialityImpact": "PARTIAL",
+              "integrityImpact": "PARTIAL",
+              "availabilityImpact": "PARTIAL"
+            },
+            "baseSeverity": "HIGH",
+            "exploitabilityScore": 10.0,
+            "impactScore": 6.4,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": false,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": false
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "NVD-CWE-Other"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:9:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "3778BBD3-6C58-46DF-B1EB-ED02513CA8D6"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C28602CC-7866-4C30-B518-055923599A18"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://support.microsoft.com/default.aspx?scid=kb%3B%5BLN%5D%3B892313",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://support.microsoft.com/default.aspx?scid=kb%3B%5BLN%5D%3B892313",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        }
+      ],
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    },
+    {
+      "id": "CVE-2006-0006",
+      "sourceIdentifier": "secure@microsoft.com",
+      "published": "2006-02-14T22:06:00.000",
+      "lastModified": "2024-11-21T00:05:27.057",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Heap-based buffer overflow in the bitmap processing routine in Microsoft Windows Media Player 7.1 on Windows 2000 SP4, Media Player 9 on Windows 2000 SP4 and XP SP1, and Media Player 10 on XP SP1 and SP2 allows remote attackers to execute arbitrary code via a crafted bitmap (.BMP) file that specifies a size of 0 but contains additional data."
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:M/Au:N/C:C/I:C/A:C",
+              "baseScore": 9.3,
+              "accessVector": "NETWORK",
+              "accessComplexity": "MEDIUM",
+              "authentication": "NONE",
+              "confidentialityImpact": "COMPLETE",
+              "integrityImpact": "COMPLETE",
+              "availabilityImpact": "COMPLETE"
+            },
+            "baseSeverity": "HIGH",
+            "exploitabilityScore": 8.6,
+            "impactScore": 10.0,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": true,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": false
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "CWE-119"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:7.1:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C66EBE04-CE6A-4B81-BC09-60DC5DB121E3"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:9:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "3778BBD3-6C58-46DF-B1EB-ED02513CA8D6"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C28602CC-7866-4C30-B518-055923599A18"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_2000:*:sp1:*:*:*:*:*:*",
+                  "matchCriteriaId": "294EBA01-147B-4DA0-937E-ACBB655EDE53"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_2000:*:sp4:*:fr:*:*:*:*",
+                  "matchCriteriaId": "330B6798-5380-44AD-9B52-DF5955FA832C"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_2003_server:r2:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "4E7FD818-322D-4089-A644-360C33943D29"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_98:*:gold:*:*:*:*:*:*",
+                  "matchCriteriaId": "2D3B703C-79B2-4FA2-9E12-713AB977A880"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_98se:*:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "AA733AD2-D948-46A0-A063-D29081A56F1F"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_me:*:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "799DA395-C7F8-477C-8BC7-5B4B88FB7503"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:*:sp1:tablet_pc:*:*:*:*:*",
+                  "matchCriteriaId": "B9687E6C-EDE9-42E4-93D0-C4144FEC917A"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:*:sp2:tablet_pc:*:*:*:*:*",
+                  "matchCriteriaId": "FB2BE2DE-7B06-47ED-A674-15D45448F357"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://secunia.com/advisories/18835",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://securityreason.com/securityalert/423",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://securitytracker.com/id?1015627",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Patch"
+          ]
+        },
+        {
+          "url": "http://www.eeye.com/html/research/advisories/AD20060214.html",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.kb.cert.org/vuls/id/291396",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Third Party Advisory",
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/424983/100/0/threaded",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/425158/100/0/threaded",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/16633",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Exploit",
+            "Patch"
+          ]
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA06-045A.html",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Third Party Advisory",
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2006/0574",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2006/ms06-005",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/24488",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1256",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1578",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1598",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1661",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://secunia.com/advisories/18835",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://securityreason.com/securityalert/423",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://securitytracker.com/id?1015627",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch"
+          ]
+        },
+        {
+          "url": "http://www.eeye.com/html/research/advisories/AD20060214.html",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.kb.cert.org/vuls/id/291396",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Third Party Advisory",
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/424983/100/0/threaded",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/425158/100/0/threaded",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/16633",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Exploit",
+            "Patch"
+          ]
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA06-045A.html",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Third Party Advisory",
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2006/0574",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2006/ms06-005",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/24488",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1256",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1578",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1598",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1661",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        }
+      ],
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    },
+    {
+      "id": "CVE-2006-0025",
+      "sourceIdentifier": "secure@microsoft.com",
+      "published": "2006-06-13T19:06:00.000",
+      "lastModified": "2024-11-21T00:05:29.260",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Stack-based buffer overflow in Microsoft Windows Media Player 9 and 10 allows remote attackers to execute arbitrary code via a PNG image with a large chunk size."
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:M/Au:N/C:C/I:C/A:C",
+              "baseScore": 9.3,
+              "accessVector": "NETWORK",
+              "accessComplexity": "MEDIUM",
+              "authentication": "NONE",
+              "confidentialityImpact": "COMPLETE",
+              "integrityImpact": "COMPLETE",
+              "availabilityImpact": "COMPLETE"
+            },
+            "baseSeverity": "HIGH",
+            "exploitabilityScore": 8.6,
+            "impactScore": 10.0,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": false,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": true
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "CWE-119"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:9:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "3778BBD3-6C58-46DF-B1EB-ED02513CA8D6"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C28602CC-7866-4C30-B518-055923599A18"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://secunia.com/advisories/20626",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://securitytracker.com/id?1016284",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.idefense.com/intelligence/vulnerabilities/display.php?id=406",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.kb.cert.org/vuls/id/608020",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.osvdb.org/26430",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/18385",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Patch"
+          ]
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA06-164A.html",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2006/2322",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2006/ms06-024",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/26788",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1230",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1729",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1805",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1807",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1820",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1974",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://secunia.com/advisories/20626",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://securitytracker.com/id?1016284",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.idefense.com/intelligence/vulnerabilities/display.php?id=406",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.kb.cert.org/vuls/id/608020",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.osvdb.org/26430",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/18385",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch"
+          ]
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA06-164A.html",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2006/2322",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2006/ms06-024",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/26788",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1230",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1729",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1805",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1807",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1820",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1974",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        }
+      ],
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    },
+    {
+      "id": "CVE-2007-3035",
+      "sourceIdentifier": "secure@microsoft.com",
+      "published": "2007-08-14T21:17:00.000",
+      "lastModified": "2024-11-21T00:32:14.693",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Unspecified vulnerability in Microsoft Windows Media Player 7.1, 9, 10, and 11 allows remote attackers to execute arbitrary code via a skin file (WMZ or WMD) with crafted header information that is not properly handled during decompression, aka \"Windows Media Player Code Execution Vulnerability Decompressing Skins.\""
+        },
+        {
+          "lang": "es",
+          "value": "Una Vulnerabilidad no especificada en Microsoft Windows Media Player versiones 7.1, 9, 10 y 11 permite a atacantes remotos ejecutar c\u00f3digo arbitrario por medio de un archivo skin (WMZ o WMD) con informaci\u00f3n de encabezado creada que no es manejada apropiadamente durante la descompresi\u00f3n, tambi\u00e9n se conoce como \"Windows Media Player Code Execution Vulnerability Decompressing Skins.\""
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:H/Au:N/C:C/I:C/A:C",
+              "baseScore": 7.6,
+              "accessVector": "NETWORK",
+              "accessComplexity": "HIGH",
+              "authentication": "NONE",
+              "confidentialityImpact": "COMPLETE",
+              "integrityImpact": "COMPLETE",
+              "availabilityImpact": "COMPLETE"
+            },
+            "baseSeverity": "HIGH",
+            "exploitabilityScore": 4.9,
+            "impactScore": 10.0,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": false,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": true
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "NVD-CWE-noinfo"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:7.1:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C66EBE04-CE6A-4B81-BC09-60DC5DB121E3"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:9:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "3778BBD3-6C58-46DF-B1EB-ED02513CA8D6"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C28602CC-7866-4C30-B518-055923599A18"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:11:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "B27BB8B0-BC24-4A3F-A18B-63D57AB4799B"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://secunia.com/advisories/26433",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://securitytracker.com/id?1018565",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/476548/100/0/threaded",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/25305",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA07-226A.html",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2007/2871",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.zerodayinitiative.com/advisories/ZDI-07-047.html",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2007/ms07-047",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/35895",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1352",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://secunia.com/advisories/26433",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://securitytracker.com/id?1018565",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/476548/100/0/threaded",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/25305",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA07-226A.html",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2007/2871",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.zerodayinitiative.com/advisories/ZDI-07-047.html",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2007/ms07-047",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/35895",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A1352",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        }
+      ],
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    },
+    {
+      "id": "CVE-2007-3037",
+      "sourceIdentifier": "secure@microsoft.com",
+      "published": "2007-08-14T21:17:00.000",
+      "lastModified": "2024-11-21T00:32:14.940",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Microsoft Windows Media Player 7.1, 9, 10, and 11 allows remote attackers to execute arbitrary code via a skin file (WMZ or WMD) with crafted header information that causes a size mismatch between compressed and decompressed data and triggers a heap-based buffer overflow, aka \"Windows Media Player Code Execution Vulnerability Parsing Skins.\""
+        },
+        {
+          "lang": "es",
+          "value": "Microsoft Windows Media Player versiones 7.1, 9, 10 y 11 permite a los atacantes remotos ejecutar c\u00f3digo arbitrario por medio de un archivo skin (WMZ o WMD) con informaci\u00f3n de encabezado creada que causa una falta de coincidencia de tama\u00f1o entre los datos comprimidos y descomprimidos y desencadena un desbordamiento de b\u00fafer en la regi\u00f3n heap de la memoria, tambi\u00e9n se conoce como \"Windows Media Player Code Execution Vulnerability Parsing Skins.\""
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:H/Au:N/C:P/I:P/A:N",
+              "baseScore": 4.0,
+              "accessVector": "NETWORK",
+              "accessComplexity": "HIGH",
+              "authentication": "NONE",
+              "confidentialityImpact": "PARTIAL",
+              "integrityImpact": "PARTIAL",
+              "availabilityImpact": "NONE"
+            },
+            "baseSeverity": "MEDIUM",
+            "exploitabilityScore": 4.9,
+            "impactScore": 4.9,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": false,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": true
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "CWE-94"
+            },
+            {
+              "lang": "en",
+              "value": "CWE-119"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:7.1:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C66EBE04-CE6A-4B81-BC09-60DC5DB121E3"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:9:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "3778BBD3-6C58-46DF-B1EB-ED02513CA8D6"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C28602CC-7866-4C30-B518-055923599A18"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:11:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "B27BB8B0-BC24-4A3F-A18B-63D57AB4799B"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://secunia.com/advisories/26433",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://securitytracker.com/id?1018565",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.osvdb.org/36385",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/476533/100/0/threaded",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/25307",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA07-226A.html",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2007/2871",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.zerodayinitiative.com/advisories/ZDI-07-046.html",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2007/ms07-047",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A2207",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://secunia.com/advisories/26433",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://securitytracker.com/id?1018565",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.osvdb.org/36385",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/476533/100/0/threaded",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/25307",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA07-226A.html",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2007/2871",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.zerodayinitiative.com/advisories/ZDI-07-046.html",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2007/ms07-047",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A2207",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        }
+      ],
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    },
+    {
+      "id": "CVE-2008-4927",
+      "sourceIdentifier": "cve@mitre.org",
+      "published": "2008-11-04T21:00:05.877",
+      "lastModified": "2024-11-21T00:52:51.740",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Microsoft Windows Media Player (WMP) 9.0 through 11 allows user-assisted attackers to cause a denial of service (application crash) via a malformed (1) MIDI or (2) DAT file, related to \"MThd Header Parsing.\" NOTE: the provenance of this information is unknown; the details are obtained solely from third party information."
+        },
+        {
+          "lang": "es",
+          "value": "Microsoft Windows Media Player (WMP) v9.0 hasta v11 permite a atacantes asistidos por el usuario local provocar una denegaci\u00f3n de servicio (ca\u00edda de la aplicaci\u00f3n) a trav\u00e9s de ficheros (1) MIDO o (2) DAT mal formados. Est\u00e1 relacionado con \"La validaci\u00f3n de cabeceras MThd\". NOTA: El origen de esta informaci\u00f3n es desconocido; los detalles se han obtenido \u00fanicamente de informaci\u00f3n de terceros."
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+              "baseScore": 4.3,
+              "accessVector": "NETWORK",
+              "accessComplexity": "MEDIUM",
+              "authentication": "NONE",
+              "confidentialityImpact": "NONE",
+              "integrityImpact": "NONE",
+              "availabilityImpact": "PARTIAL"
+            },
+            "baseSeverity": "MEDIUM",
+            "exploitabilityScore": 8.6,
+            "impactScore": 2.9,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": false,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": true
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "CWE-20"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:9:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "3778BBD3-6C58-46DF-B1EB-ED02513CA8D6"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C28602CC-7866-4C30-B518-055923599A18"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:11:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "B27BB8B0-BC24-4A3F-A18B-63D57AB4799B"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://www.securityfocus.com/bid/32077",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://www.securityfocus.com/data/vulnerabilities/exploits/32077.py",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Exploit"
+          ]
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/32077",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/data/vulnerabilities/exploits/32077.py",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Exploit"
+          ]
+        }
+      ],
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    },
+    {
+      "id": "CVE-2009-4309",
+      "sourceIdentifier": "cve@mitre.org",
+      "published": "2009-12-13T01:30:00.483",
+      "lastModified": "2024-11-21T01:09:20.243",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Heap-based buffer overflow in the Intel Indeo41 codec for Windows Media Player in Microsoft Windows 2000 SP4, XP SP2 and SP3, and Server 2003 SP2 allows remote attackers to execute arbitrary code via a large size value in a movi record in an IV41 stream in a media file, as demonstrated by an AVI file."
+        },
+        {
+          "lang": "es",
+          "value": "Desbordamiento del b\u00fafer de la memoria din\u00e1mica en el codec Intel Indeo41 para Windows Media Player en Microsoft Windows 2000 SP4, XP SP2 y SP3, y Server 2003 SP2  permite a atacantes remotos ejecutar c\u00f3digo arbitrario a trav\u00e9s de un valor grande de tama\u00f1o en una grabaci\u00f3n de pel\u00edcula en un stream IV41 en un fichero multimedia, como se demuestra en un fichero AVI."
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:M/Au:N/C:C/I:C/A:C",
+              "baseScore": 9.3,
+              "accessVector": "NETWORK",
+              "accessComplexity": "MEDIUM",
+              "authentication": "NONE",
+              "confidentialityImpact": "COMPLETE",
+              "integrityImpact": "COMPLETE",
+              "availabilityImpact": "COMPLETE"
+            },
+            "baseSeverity": "HIGH",
+            "exploitabilityScore": 8.6,
+            "impactScore": 10.0,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": false,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": true
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "CWE-119"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "operator": "AND",
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:*:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "5044AB3C-7E2F-45F8-8392-7E99FC198787"
+                }
+              ]
+            },
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_2000:*:sp4:*:*:*:*:*:*",
+                  "matchCriteriaId": "83E7C4A0-78CF-4B56-82BF-EC932BDD8ADF"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_2003_server:*:sp2:*:*:*:*:*:*",
+                  "matchCriteriaId": "2978BF86-5A1A-438E-B81F-F360D0E30C9C"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_2003_server:*:sp2:itanium:*:*:*:*:*",
+                  "matchCriteriaId": "F7EFB032-47F4-4497-B16B-CB9126EAC9DF"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_2003_server:*:sp2:x64:*:*:*:*:*",
+                  "matchCriteriaId": "6881476D-81A2-4DFD-AC77-82A8D08A0568"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:*:sp3:*:*:*:*:*:*",
+                  "matchCriteriaId": "CE477A73-4EE4-41E9-8694-5A3D5DC88656"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:-:sp2:*:*:*:*:*:*",
+                  "matchCriteriaId": "34DF3B5E-F17F-49B4-9DC8-06749F3C9CC3"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:-:sp2:x64:*:*:*:*:*",
+                  "matchCriteriaId": "FFAC3F90-77BF-4F56-A89B-8A3D2D1FC6D6"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://secunia.com/advisories/37592",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://securitytracker.com/id?1023302",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Patch"
+          ]
+        },
+        {
+          "url": "http://support.microsoft.com/kb/954157",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://support.microsoft.com/kb/955759",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://support.microsoft.com/kb/976138",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.microsoft.com/technet/security/advisory/954157.mspx",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.osvdb.org/60855",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/508324/100/0/threaded",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/37251",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2009/3440",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://zerodayinitiative.com/advisories/ZDI-09-089/",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/54642",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/54645",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A12188",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://secunia.com/advisories/37592",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://securitytracker.com/id?1023302",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch"
+          ]
+        },
+        {
+          "url": "http://support.microsoft.com/kb/954157",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://support.microsoft.com/kb/955759",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://support.microsoft.com/kb/976138",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.microsoft.com/technet/security/advisory/954157.mspx",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Patch",
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.osvdb.org/60855",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/archive/1/508324/100/0/threaded",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.securityfocus.com/bid/37251",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2009/3440",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://zerodayinitiative.com/advisories/ZDI-09-089/",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/54642",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://exchange.xforce.ibmcloud.com/vulnerabilities/54645",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A12188",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        }
+      ],
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    },
+    {
+      "id": "CVE-2010-2745",
+      "sourceIdentifier": "secure@microsoft.com",
+      "published": "2010-10-13T19:00:44.243",
+      "lastModified": "2024-11-21T01:17:17.787",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Microsoft Windows Media Player (WMP) 9 through 12 does not properly deallocate objects during a browser reload action, which allows user-assisted remote attackers to execute arbitrary code via crafted media content referenced in an HTML document, aka \"Windows Media Player Memory Corruption Vulnerability.\""
+        },
+        {
+          "lang": "es",
+          "value": "Microsoft Windows Media Player (WMP) v9 hasta v12 no asigna adecuadamente ojetos durante la acci\u00f3n de recarga de buscador, lo que permite a atacantes asistidos por usuarios remotos ejecutar c\u00f3digo de su elecci\u00f3n a trav\u00e9s de contenido desferenciado media manipulado en un documento HTML, tambi\u00e9n conocido como \"Vulnerabilidad de corrupci\u00f3n de memoria Windows Media Player\"."
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:M/Au:N/C:C/I:C/A:C",
+              "baseScore": 9.3,
+              "accessVector": "NETWORK",
+              "accessComplexity": "MEDIUM",
+              "authentication": "NONE",
+              "confidentialityImpact": "COMPLETE",
+              "integrityImpact": "COMPLETE",
+              "availabilityImpact": "COMPLETE"
+            },
+            "baseSeverity": "HIGH",
+            "exploitabilityScore": 8.6,
+            "impactScore": 10.0,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": false,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": true
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "CWE-94"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "operator": "AND",
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:9:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "3778BBD3-6C58-46DF-B1EB-ED02513CA8D6"
+                }
+              ]
+            },
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:*:sp3:*:*:*:*:*:*",
+                  "matchCriteriaId": "CE477A73-4EE4-41E9-8694-5A3D5DC88656"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "operator": "AND",
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C28602CC-7866-4C30-B518-055923599A18"
+                }
+              ]
+            },
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_2003_server:*:sp2:*:*:*:*:*:*",
+                  "matchCriteriaId": "2978BF86-5A1A-438E-B81F-F360D0E30C9C"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_7:-:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "E33796DB-4523-4F04-B564-ADF030553D51"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2003:*:sp2:*:*:*:*:*:*",
+                  "matchCriteriaId": "4D3B5E4F-56A6-4696-BBB4-19DF3613D020"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2008:*:*:x32:*:*:*:*:*",
+                  "matchCriteriaId": "9CFB1A97-8042-4497-A45D-C014B5E240AB"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2008:*:*:x64:*:*:*:*:*",
+                  "matchCriteriaId": "7F9C7616-658D-409D-8B53-AC00DC55602A"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2008:*:sp2:x32:*:*:*:*:*",
+                  "matchCriteriaId": "B8A32637-65EC-42C4-A892-0E599562527C"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2008:*:sp2:x64:*:*:*:*:*",
+                  "matchCriteriaId": "FFF81F4B-7D92-4398-8658-84530FB8F518"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2008:r2:*:x64:*:*:*:*:*",
+                  "matchCriteriaId": "95DC297F-06DB-4FB3-BFB6-7312C059E047"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_vista:*:sp1:*:*:*:*:*:*",
+                  "matchCriteriaId": "C162FFF0-1E8F-4DCF-A08F-6C6E324ED878"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_vista:*:sp2:*:*:*:*:*:*",
+                  "matchCriteriaId": "0A0D2704-C058-420B-B368-372D1129E914"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:*:sp3:*:*:*:*:*:*",
+                  "matchCriteriaId": "CE477A73-4EE4-41E9-8694-5A3D5DC88656"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:-:sp2:x64:*:*:*:*:*",
+                  "matchCriteriaId": "FFAC3F90-77BF-4F56-A89B-8A3D2D1FC6D6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "operator": "AND",
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:11:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "B27BB8B0-BC24-4A3F-A18B-63D57AB4799B"
+                }
+              ]
+            },
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2008:*:*:x32:*:*:*:*:*",
+                  "matchCriteriaId": "9CFB1A97-8042-4497-A45D-C014B5E240AB"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2008:*:*:x64:*:*:*:*:*",
+                  "matchCriteriaId": "7F9C7616-658D-409D-8B53-AC00DC55602A"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2008:*:sp2:x32:*:*:*:*:*",
+                  "matchCriteriaId": "B8A32637-65EC-42C4-A892-0E599562527C"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2008:*:sp2:x64:*:*:*:*:*",
+                  "matchCriteriaId": "FFF81F4B-7D92-4398-8658-84530FB8F518"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_vista:*:sp1:*:*:*:*:*:*",
+                  "matchCriteriaId": "C162FFF0-1E8F-4DCF-A08F-6C6E324ED878"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_vista:*:sp2:*:*:*:*:*:*",
+                  "matchCriteriaId": "0A0D2704-C058-420B-B368-372D1129E914"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:*:sp3:*:*:*:*:*:*",
+                  "matchCriteriaId": "CE477A73-4EE4-41E9-8694-5A3D5DC88656"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:-:sp2:x64:*:*:*:*:*",
+                  "matchCriteriaId": "FFAC3F90-77BF-4F56-A89B-8A3D2D1FC6D6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "operator": "AND",
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:12:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "3E5A4781-240A-4E84-AEA1-4542BEEF41CF"
+                }
+              ]
+            },
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_7:*:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "D56B932B-9593-44E2-B610-E4EB2143EB21"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_7:-:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "E33796DB-4523-4F04-B564-ADF030553D51"
+                },
+                {
+                  "vulnerable": false,
+                  "criteria": "cpe:2.3:o:microsoft:windows_server_2008:r2:*:x64:*:*:*:*:*",
+                  "matchCriteriaId": "95DC297F-06DB-4FB3-BFB6-7312C059E047"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://www.securitytracker.com/id?1024550",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA10-285A.html",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2010/ms10-082",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A6653",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "http://www.securitytracker.com/id?1024550",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA10-285A.html",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2010/ms10-082",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A6653",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        }
+      ],
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    },
+    {
+      "id": "CVE-2010-3138",
+      "sourceIdentifier": "cve@mitre.org",
+      "published": "2010-08-27T19:00:01.393",
+      "lastModified": "2024-11-21T01:18:07.147",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Untrusted search path vulnerability in the Indeo Codec in iac25_32.ax in Microsoft Windows XP SP3 allows local users to gain privileges via a Trojan horse iacenc.dll file in the current working directory, as demonstrated by access through BS.Player or Media Player Classic to a directory that contains a .avi, .mka, .ra, or .ram file, aka \"Indeo Codec Insecure Library Loading Vulnerability.\" NOTE: some of these details are obtained from third party information."
+        },
+        {
+          "lang": "es",
+          "value": "Una vulnerabilidad de ruta (path) de b\u00fasqueda no confiable en el C\u00f3dec Indeo en el archivo iac25_32.ax en Microsoft Windows XP SP3, permite a los usuarios locales alcanzar privilegios por medio de un archivo iacenc.dll de tipo caballo de Troya en el directorio de trabajo actual, como es demostrado por el acceso por medio de BS.Player o Media Player Classic a un directorio que contiene un archivo .avi, .mka, .ra o .ram, tambi\u00e9n se conoce como \"Indeo Codec Insecure Library Loading Vulnerability\" NOTA: algunos de estos datos se obtienen de informaci\u00f3n de terceros."
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:M/Au:N/C:C/I:C/A:C",
+              "baseScore": 9.3,
+              "accessVector": "NETWORK",
+              "accessComplexity": "MEDIUM",
+              "authentication": "NONE",
+              "confidentialityImpact": "COMPLETE",
+              "integrityImpact": "COMPLETE",
+              "availabilityImpact": "COMPLETE"
+            },
+            "baseSeverity": "HIGH",
+            "exploitabilityScore": 8.6,
+            "impactScore": 10.0,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": false,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": true
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "NVD-CWE-Other"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "operator": "AND",
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:*:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "5044AB3C-7E2F-45F8-8392-7E99FC198787"
+                }
+              ]
+            },
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:o:microsoft:windows_xp:*:sp3:*:*:*:*:*:*",
+                  "matchCriteriaId": "CE477A73-4EE4-41E9-8694-5A3D5DC88656"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:bsplayer:bs.player:*:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "DC5783BA-71D2-4669-A504-E38BDB2F6402"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://osvdb.org/67588",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://secunia.com/advisories/41114",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.exploit-db.com/exploits/14765",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Exploit"
+          ]
+        },
+        {
+          "url": "http://www.exploit-db.com/exploits/14788",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Exploit"
+          ]
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA12-045A.html",
+          "source": "cve@mitre.org",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2010/2190",
+          "source": "cve@mitre.org",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.zeroscience.mk/en/vulnerabilities/ZSL-2010-4956.php",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2012/ms12-014",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A7132",
+          "source": "cve@mitre.org"
+        },
+        {
+          "url": "http://osvdb.org/67588",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "http://secunia.com/advisories/41114",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.exploit-db.com/exploits/14765",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Exploit"
+          ]
+        },
+        {
+          "url": "http://www.exploit-db.com/exploits/14788",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Exploit"
+          ]
+        },
+        {
+          "url": "http://www.us-cert.gov/cas/techalerts/TA12-045A.html",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "US Government Resource"
+          ]
+        },
+        {
+          "url": "http://www.vupen.com/english/advisories/2010/2190",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Vendor Advisory"
+          ]
+        },
+        {
+          "url": "http://www.zeroscience.mk/en/vulnerabilities/ZSL-2010-4956.php",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2012/ms12-014",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A7132",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        }
+      ],
+      "evaluatorComment": "Per: http://cwe.mitre.org/data/definitions/426.html \r\n\r\n'CWE-426 - 'Untrusted Search Path Vulnerability'",
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    },
+    {
+      "id": "CVE-2015-1728",
+      "sourceIdentifier": "secure@microsoft.com",
+      "published": "2015-06-10T01:59:09.647",
+      "lastModified": "2024-11-21T02:26:00.797",
+      "vulnStatus": "Modified",
+      "cveTags": [],
+      "descriptions": [
+        {
+          "lang": "en",
+          "value": "Microsoft Windows Media Player 10 through 12 allows remote attackers to execute arbitrary code via a crafted DataObject on a web site, aka \"Windows Media Player RCE via DataObject Vulnerability.\""
+        },
+        {
+          "lang": "es",
+          "value": "Microsoft Windows Media Player 10 hasta 12 permite a atacantes remotos ejecutar c\u00f3digo a trav\u00e9s de un DataObject manipulado en un sitio web, tambi\u00e9n conocido como 'vulnerabilidad de DataObject a trav\u00e9s de RCE Windows Media Player.'"
+        }
+      ],
+      "metrics": {
+        "cvssMetricV2": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "cvssData": {
+              "version": "2.0",
+              "vectorString": "AV:N/AC:M/Au:N/C:C/I:C/A:C",
+              "baseScore": 9.3,
+              "accessVector": "NETWORK",
+              "accessComplexity": "MEDIUM",
+              "authentication": "NONE",
+              "confidentialityImpact": "COMPLETE",
+              "integrityImpact": "COMPLETE",
+              "availabilityImpact": "COMPLETE"
+            },
+            "baseSeverity": "HIGH",
+            "exploitabilityScore": 8.6,
+            "impactScore": 10.0,
+            "acInsufInfo": false,
+            "obtainAllPrivilege": false,
+            "obtainUserPrivilege": false,
+            "obtainOtherPrivilege": false,
+            "userInteractionRequired": false
+          }
+        ]
+      },
+      "weaknesses": [
+        {
+          "source": "nvd@nist.gov",
+          "type": "Primary",
+          "description": [
+            {
+              "lang": "en",
+              "value": "CWE-17"
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "nodes": [
+            {
+              "operator": "OR",
+              "negate": false,
+              "cpeMatch": [
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C28602CC-7866-4C30-B518-055923599A18"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10.00.00.3646:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "141C8502-881B-4555-A8F0-D31B3E578906"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10.00.00.3990:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "43134A65-ADAA-4734-8B63-F96A9189FE34"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10.00.00.4019:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "CCD860A9-920B-43CA-B33D-3D3C0FCDAD77"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:10.00.00.4036:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "971E1A0D-CB1D-4C6D-A9AC-FEBE8BAB7CBA"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:11:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "B27BB8B0-BC24-4A3F-A18B-63D57AB4799B"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:11.0.5721.5145:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "C30B014E-E690-4D95-8E0E-D38429A38704"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:11.0.5721.5230:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "67E5BD38-EC42-4709-9B8C-2E3C4A78ED7E"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:11.0.6000.6324:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "FE3942D8-A937-482F-8C95-99DF29102FED"
+                },
+                {
+                  "vulnerable": true,
+                  "criteria": "cpe:2.3:a:microsoft:windows_media_player:12:*:*:*:*:*:*:*",
+                  "matchCriteriaId": "3E5A4781-240A-4E84-AEA1-4542BEEF41CF"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "url": "http://www.securitytracker.com/id/1032522",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Third Party Advisory",
+            "VDB Entry"
+          ]
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2015/ms15-057",
+          "source": "secure@microsoft.com"
+        },
+        {
+          "url": "https://www.verisign.com/en_US/security-services/security-intelligence/vulnerability-reports/articles/index.xhtml?id=1200",
+          "source": "secure@microsoft.com",
+          "tags": [
+            "Third Party Advisory",
+            "VDB Entry"
+          ]
+        },
+        {
+          "url": "http://www.securitytracker.com/id/1032522",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Third Party Advisory",
+            "VDB Entry"
+          ]
+        },
+        {
+          "url": "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2015/ms15-057",
+          "source": "af854a3a-2127-422b-91ae-364da2661108"
+        },
+        {
+          "url": "https://www.verisign.com/en_US/security-services/security-intelligence/vulnerability-reports/articles/index.xhtml?id=1200",
+          "source": "af854a3a-2127-422b-91ae-364da2661108",
+          "tags": [
+            "Third Party Advisory",
+            "VDB Entry"
+          ]
+        }
+      ],
+      "cpe": "cpe:2.3:a:microsoft:windows_media_player:10:*:*:*:*:*:*:*"
+    }
+  ]
+}

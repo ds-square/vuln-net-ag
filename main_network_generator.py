@@ -1,18 +1,18 @@
-import os, logging
+import os, logging, sys
 from pebble import ProcessPool
-import os.path, sys
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
-
-from utils.generate_full_storage import generate_intentory
-from utils.generate_reachability import write_reachability
 import config
+
+from utils.dump_nvd import dump
+from utils.generate_reachability import write_reachability
+
 
 """
 Generate the benchmark of networks in "network" folder
 """
 def generate_network(filename):
     logging.basicConfig(filename='logging/network.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s: %(message)s')
-
+    
     if not os.path.exists(config.NETWORK_FOLDER): os.makedirs(config.NETWORK_FOLDER)
     generated_files = os.listdir(config.NETWORK_FOLDER)
     if filename not in generated_files:
@@ -21,13 +21,14 @@ def generate_network(filename):
     else:
         logging.debug("[Already Generated]: %s (total generated files - %d)", filename, len(generated_files))
 
-if __name__ == "__main__":
+if __name__ == "__main__":    
+    
     """
     To build the inventory from skratch
     NOTICE: this may require long time for NIST APIs. We suggest to use the 
     proposed syntetic inventory
     """
-    # generate_intentory()
+    # dump()
 
     """
     Create networks for reachability graphs
@@ -40,7 +41,7 @@ if __name__ == "__main__":
                     for u in config.diversity:
                         filename = str(n)+'_'+str(v)+'_'+t+'_'+d+'_'+str(u)+'.json'
                         filenames.append(filename)
-
+    
     """
     Generate Reachability Networks
     """
