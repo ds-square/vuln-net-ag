@@ -1,12 +1,10 @@
 import csv, os
 
 ### [User]
-nvd_key = None #TODO: put your NVD key here
+nvd_key = None # Put your NVD key here
 
 ### [System]
 num_cores = 3
-timeout = 7000
-num_entry_points = [1,5,25,50]
 
 ### [Vulnerable Network Generator]
 OS=['Windows 10','Ubuntu Linux 22.10', 'Debian Linux 11']
@@ -16,6 +14,13 @@ nvulns = [10,25,50,75,100,150,250,500]
 topologies = ['mesh','random','star','ring','tree','powerlaw','lan0','lan25','lan50']
 distro = ['uniform','poisson','bernoulli','binomial']
 diversity = [0,0.25,0.5,0.75,1]
+
+### [AttackGraph]
+timeout = 7000
+compute_paths=False
+num_entry_points = [1,5,25,50]
+ag_models = ["TVA","NETSPA"] # without MulVAL
+# ag_models = ["NETSPA","TVA","MULVAL"] # with MulVAL
 
 ### [FileSystem]
 NVD_DUMP_FOLDER = "nvd_dump/"
@@ -37,11 +42,6 @@ path_stats_file_pruning = "analysis/path_stats_pruning.csv"
 mulval_time_file = STATS_FOLDER+"time_mulval.txt"
 graph_stats_file = "graph_statistics.csv"
 generation_stats_file = "generation_statistics.csv"
-
-### [AttackGraph]
-ag_models = ["TVA","NETSPA"] # without MulVAL
-# ag_models = ["NETSPA","TVA","MULVAL"] # with MulVAL
-
 
 ### [Utils]
 def create_graph_stats_file(clean_stats=False):

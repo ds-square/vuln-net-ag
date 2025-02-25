@@ -154,7 +154,7 @@ def pruning(graph_file):
     logging.info("[END] %s", graph_file)
 
 
-if __name__ == "__main__":
+def attack_paths_computation():
     """
     All paths computation
     """

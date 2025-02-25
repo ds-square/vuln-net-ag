@@ -1,14 +1,15 @@
-import csv, logging, time
+import csv, logging, time, os.path, sys
 import numpy as np
 import networkx as nx
 import pandas as pd
 from pebble import ProcessPool
 
-import os.path, sys
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
 
 import algorithms.tva as TVA
 import algorithms.netspa as NETSPA
+from algorithms.paths import attack_paths_computation
+from analysis.plot_analysis import ag_plotter
 import config
 
 def write_graphstats(ag_file):
@@ -177,3 +178,9 @@ if __name__ == "__main__":
 
     with ProcessPool(max_workers=config.num_cores) as pool:
         process = pool.map(write_graphstats, filenames)
+        
+    """Compute Attack Paths"""
+    if config.compute_paths: attack_paths_computation()
+    
+    """Plot experimental analysis"""
+    ag_plotter()

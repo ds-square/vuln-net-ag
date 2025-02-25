@@ -10,74 +10,52 @@ To address this problem and support the comprehensive evaluation of attack graph
 This enables the design of an analytical framework to assess attack graph scalability comprehensively, considering diverse network and vulnerability dimensions.
 According to the proposed framework, we perform in-depth experimental evaluation of the time and space complexities of attack graphs offering novel insights into the critical parameters affecting them, and we extensively discuss how they inform and benefit future approaches.
 
-## Requirements:
+## Requirements and instructions
 
-The following libraries and packages are required for the correct installation of the benchmark:
-
-- pandas
-- networkx
-- Pebble
-- numpy
-- matplotlib
-- nvdlib
-- scikit-learn
-- scipy
-- stats
-
-To install the requirements:
+To see check the `requirements.txt` file and install using:
 
 ```
 pip install requirements
 ```
 
-## Instructions
-
 Given the multiple contributions of the paper and this repository, we provide a modular approach to run the system, so as the user can run only the portion of the code s/he is interested in.
 The code is set to run on multiple cores given the required computational time. The number of cores and the dataset generator parameters can be set in the config.py file.
 
-### Vulnerable Network Generator
+## Vulnerable Network Generator
 
 1. Set up the generator parameters in the file `config.py` under the section `###[Vulnerable Network Generator]`
 
 1. If you change default `OS` and `SERVICES`, uncomment the `dump()` function in the main.
-   NOTE 1: dumping services and vulnerabilities from NVD repository may require time.
-   NOTE 2: for a better service, create your `nvd api key` (https://nvd.nist.gov/developers/request-an-api-key) and put it in the configuration file (`config.py`)
 
-1. Run the network generator using the following command (generated network files will appear in the `networks` folder)
+   _NOTICE 1_: dumping services and vulnerabilities from NVD repository may require time.
 
-`python3 main_network_generator`
+   _NOTICE 2_: for a better service, create your `nvd api key` (https://nvd.nist.gov/developers/request-an-api-key) and put it in the configuration file (`config.py`)
 
-### Attack Graph Generation
+1. Run the network generator using the following command (generated files will appear in the `networks` folder)
 
 ```
-python3 main_ag_modeling.py
+python3 main_vulnet.py
 ```
 
-Run Attack Graph generation according to NetSPA and TVA. The results of this module is the dataset of attack graphs (in graphml format) in "attack_graphs" folder.
-MulVAL is excluded by default, if you want to add MulVAL in the analysis, update the config.py file. More information available in the next section "Instructions for MulVAL".
-NOTICE: MulVAL must be generated using the propietary tool available at: https://people.cs.ksu.edu/~xou/mulval/
+## Attack Graph Generation
 
-Additionally, this module computes the structural analysis to retrieve graph properties of attack graphs (e.g., centrality, connectivity, strong components). The results will be available for each model in an appropriate file in the "analysis" folder.
+1. Set up the Attack Graph parameters in the file `config.py` under the section `###[AttackGraph]`
 
-NOTICE: It is necessary to generate vulnerable networks before running this module.
+1. Run Attack Graph generation according to NetSPA and TVA. The results of this module is the dataset of attack graphs (in graphml format) in "attack_graphs" folder.
 
-### 4. Compute attack paths
+_NOTICE 1_: MulVAL is excluded by default, if you want to add MulVAL in the analysis (see "Instructions for MulVAL").
 
-```
-python3 main_path_computation.py
-```
+_NOTICE 2_: It is necessary to generate vulnerable networks before running this module (see "Vulnerable Network Generator").
 
-Run the path computation module to compute the possible attack paths for each generated attack graph and store information about scalability (i.e., computation time and number of paths). Notice that this module may be computationally expensive, thus it is optional based on user needs.
-
-### 5. Analyze the results
+_NOTICE 3_: If you enable `paths_computation` option in the configuration file, the computation may be expensive.
 
 ```
-python3 plot_analysis.py
+python3 main_ag.py
 ```
 
-Some precomputed plots are available in plot_analysis.py script.
+1. Generated files will appear in `attack_graphs` folder and analytical charts and data in `analysis` folder
 
-# Instructions for MulVAL
+### Instructions for MulVAL
 
 Since MulVAL is tested used the proprietary project (https://people.cs.ksu.edu/~xou/mulval/), some further steps are necessary for the analysis of it.
 

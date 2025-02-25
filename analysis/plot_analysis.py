@@ -589,8 +589,7 @@ def two_params_model_distro(param_y,param_x, vertical_params, fixed_param_dict,q
 
 
 
-if __name__ == "__main__":
-
+def ag_plotter():
     if not os.path.exists(config.PLOT_SPACE_FOLDER): os.makedirs(config.PLOT_SPACE_FOLDER)
     if not os.path.exists(config.PLOT_TIME_FOLDER): os.makedirs(config.PLOT_TIME_FOLDER)
     if not os.path.exists(config.PLOT_PATH_FOLDER): os.makedirs(config.PLOT_PATH_FOLDER)
