@@ -1,7 +1,7 @@
 import csv, os
 
 ### [User]
-nvd_key = "e0703d0a-7fee-4c0c-ae24-5112c3a55287"
+nvd_key = None #TODO: put your NVD key here
 
 ### [System]
 num_cores = 3
@@ -11,11 +11,11 @@ num_entry_points = [1,5,25,50]
 ### [Benchmark]
 OS=['Windows 10','Ubuntu Linux 22.10', 'Debian Linux 11']
 SERVICES=['MySQL','PostgreSQL','Neo4','Azure','AWS','Apache','HTTP Web Server','nginx']
-nhosts = [10,25]#,50,75,100,150,250,500]
-nvulns = [10,25]#,50,75,100,150,250,500]
-topologies = ['mesh','random']#,'star','ring','tree','powerlaw','lan0','lan25','lan50']
-distro = ['uniform','poisson']#,'bernoulli','binomial']
-diversity = [0,0.25]#,0.5,0.75,1]
+nhosts = [10,25,50,75,100,150,250,500]
+nvulns = [10,25,50,75,100,150,250,500]
+topologies = ['mesh','random','star','ring','tree','powerlaw','lan0','lan25','lan50']
+distro = ['uniform','poisson','bernoulli','binomial']
+diversity = [0,0.25,0.5,0.75,1]
 
 ### [FileSystem]
 NVD_DUMP_FOLDER = "nvd_dump/"
