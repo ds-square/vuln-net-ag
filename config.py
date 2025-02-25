@@ -8,7 +8,7 @@ num_cores = 3
 timeout = 7000
 num_entry_points = [1,5,25,50]
 
-### [Benchmark]
+### [Vulnerable Network Generator]
 OS=['Windows 10','Ubuntu Linux 22.10', 'Debian Linux 11']
 SERVICES=['MySQL','PostgreSQL','Neo4','Azure','AWS','Apache','HTTP Web Server','nginx']
 nhosts = [10,25,50,75,100,150,250,500]

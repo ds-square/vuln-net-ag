@@ -35,20 +35,19 @@ pip install requirements
 Given the multiple contributions of the paper and this repository, we provide a modular approach to run the system, so as the user can run only the portion of the code s/he is interested in.
 The code is set to run on multiple cores given the required computational time. The number of cores and the dataset generator parameters can be set in the config.py file.
 
-### 1. Set up the inventory:
+### Vulnerable Network Generator
 
-The inventory folder must contain a file with the CPEs and one (ore more, up to three) file with the CVEs. We provide a sample of these files, used in the paper, in the inventory compressed folder "inventory.zip": you can unzip it in the main folder. The user can customize the retrieved services in the file utils/generate_full_storage.py.
+1. Set up the generator parameters in the file `config.py` under the section `###[Vulnerable Network Generator]`
 
-### 2. Run the dataset genertor.
+1. If you change default `OS` and `SERVICES`, uncomment the `dump()` function in the main.
+   NOTE 1: dumping services and vulnerabilities from NVD repository may require time.
+   NOTE 2: for a better service, create your `nvd api key` (https://nvd.nist.gov/developers/request-an-api-key) and put it in the configuration file (`config.py`)
 
-```
-python3 main_network_generator.py
-```
+1. Run the network generator using the following command (generated network files will appear in the `networks` folder)
 
-Run the vulnerable network generator to create the reachability graphs and vulnerability inventories, according to the parameters specified in the config.py file.
-The resulting dataset will appear under the folder "networks".
+`python3 main_network_generator`
 
-### 3. Run the Attack Graphs generation
+### Attack Graph Generation
 
 ```
 python3 main_ag_modeling.py
