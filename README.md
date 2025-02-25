@@ -1,7 +1,9 @@
 # Behind the Scenes of Attack Graphs: Vulnerable Network Generator for In-Depth Experimental Evaluation of Attack Graph Scalability
 
-## Abstract
+The paper is available at: [https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5146092](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5146092).
 
+
+## Abstract
 An Attack Graph represents potential paths for attackers to compromise a computer network and security analysts use it to pinpoint vulnerable areas for cyber risk assessment.
 Due to their combinatorial complexity, designing scalable algorithms for generating these graphs without sacrificing their accuracy remains a challenge.
 Previous research focused on improving scalability, but evaluations often overlooked key parameters beyond network size, thus raising the natural question of their application in real-world settings.
@@ -42,10 +44,11 @@ python3 main_vulnet.py
 1. Set up the Attack Graph parameters in the file `config.py` under the section `###[AttackGraph]`
 
 1. Run Attack Graph generation according to NetSPA and TVA. The results of this module is the dataset of attack graphs (in graphml format) in "attack_graphs" folder.
+2. Generated files will appear in `attack_graphs` folder and analytical charts and data in `analysis` folder
 
-_NOTICE 1_: MulVAL is excluded by default, if you want to add MulVAL in the analysis (see "Instructions for MulVAL").
+_NOTICE 1_: MulVAL is excluded by default, if you want to add MulVAL in the analysis (see [_Instructions for MulVAL_](#instructions-for-mulval)).
 
-_NOTICE 2_: It is necessary to generate vulnerable networks before running this module (see "Vulnerable Network Generator").
+_NOTICE 2_: It is necessary to generate vulnerable networks before running this module (see [_Vulnerable Network Generator_](#vulnerable-network-generator)).
 
 _NOTICE 3_: If you enable `paths_computation` option in the configuration file, the computation may be expensive.
 
@@ -53,9 +56,7 @@ _NOTICE 3_: If you enable `paths_computation` option in the configuration file, 
 python3 main_ag.py
 ```
 
-1. Generated files will appear in `attack_graphs` folder and analytical charts and data in `analysis` folder
-
-### Instructions for MulVAL
+## Instructions for MulVAL
 
 Since MulVAL is tested used the proprietary project (https://people.cs.ksu.edu/~xou/mulval/), some further steps are necessary for the analysis of it.
 
@@ -88,3 +89,15 @@ Uncomment the second part of the main module of the script "algorithms/mulval.py
 ### 5. Compute structural and path analyses
 
 Perform the steps of the previous section starting from 3.
+
+## CITE this work
+
+If you use this repository or some parts of the paper, please cite this work as:
+
+```
+@article{palma5146092behind,
+  title={Behind the Scenes of Attack Graphs: Vulnerable Network Generator for In-Depth Experimental Evaluation of Attack Graph Scalability},
+  author={Palma, Alessandro and Bonomi, Silvia},
+  journal={Available at SSRN 5146092}
+}
+```
