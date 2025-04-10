@@ -2,8 +2,8 @@
 
 The paper is available at: [https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5146092](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5146092).
 
-
 ## Abstract
+
 An Attack Graph represents potential paths for attackers to compromise a computer network and security analysts use it to pinpoint vulnerable areas for cyber risk assessment.
 Due to their combinatorial complexity, designing scalable algorithms for generating these graphs without sacrificing their accuracy remains a challenge.
 Previous research focused on improving scalability, but evaluations often overlooked key parameters beyond network size, thus raising the natural question of their application in real-world settings.
@@ -27,11 +27,13 @@ The code is set to run on multiple cores given the required computational time. 
 
 1. Set up the generator parameters in the file `config.py` under the section `###[Vulnerable Network Generator]`
 
-1. If you change default `OS` and `SERVICES`, uncomment the `dump()` function in the main.
+1. (optional) If you change default `OS` and `SERVICES`, uncomment the `dump()` function in the main.
 
    _NOTICE 1_: dumping services and vulnerabilities from NVD repository may require time.
 
    _NOTICE 2_: for a better service, create your `nvd api key` (https://nvd.nist.gov/developers/request-an-api-key) and put it in the configuration file (`config.py`)
+
+1. To use the predefine NIST dump, unzip the `cve.7z` folder and put the file `cve.json` in the `nvd_dump` folder.
 
 1. Run the network generator using the following command (generated files will appear in the `networks` folder)
 
@@ -44,7 +46,7 @@ python3 main_vulnet.py
 1. Set up the Attack Graph parameters in the file `config.py` under the section `###[AttackGraph]`
 
 1. Run Attack Graph generation according to NetSPA and TVA. The results of this module is the dataset of attack graphs (in graphml format) in "attack_graphs" folder.
-2. Generated files will appear in `attack_graphs` folder and analytical charts and data in `analysis` folder
+1. Generated files will appear in `attack_graphs` folder and analytical charts and data in `analysis` folder
 
 _NOTICE 1_: MulVAL is excluded by default, if you want to add MulVAL in the analysis (see [_Instructions for MulVAL_](#instructions-for-mulval)).
 
