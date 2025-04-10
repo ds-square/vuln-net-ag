@@ -42,10 +42,11 @@ if __name__ == "__main__":
                 for d in config.distro:
                     for u in config.diversity:
                         filename = str(n)+'_'+str(v)+'_'+t+'_'+d+'_'+str(u)+'.json'
-                        filenames.append(filename)
+                        generate_network(filename)
+    #                     filenames.append(filename)
     
-    """
-    Generate Reachability Networks
-    """
-    with ProcessPool(max_workers=config.num_cores) as pool:
-        process = pool.map(generate_network, filenames)
+    # """
+    # Generate Reachability Networks
+    # """
+    # with ProcessPool(max_workers=config.num_cores) as pool:
+    #     process = pool.map(generate_network, filenames)

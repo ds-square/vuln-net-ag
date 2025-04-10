@@ -107,6 +107,7 @@ def cve_dump(cpe_file, cve_file, key=config.nvd_key):
 
 
 def get_pool_vulnerabilities(tot_vulns):
+    considered=[]
     with open(config.cve_dump_file) as cve_f:
         vulnerabilities = json.load(cve_f)["vulnerabilities"]
     
@@ -114,9 +115,16 @@ def get_pool_vulnerabilities(tot_vulns):
     linux_os = []
     srv=[]
     for vuln in vulnerabilities:
-        if "windows" in vuln["cpe"]: win_os.append(vuln)
-        elif "ubuntu" in vuln["cpe"] or "debian" in vuln["cpe"]: linux_os.append(vuln)
-        else: srv.append(vuln)
+        if "windows" in vuln["cpe"] and vuln["id"] not in considered:
+            considered.append(vuln["id"])
+            win_os.append(vuln)
+        elif ("ubuntu" in vuln["cpe"] or "debian" in vuln["cpe"]) and vuln["id"] not in considered:
+            linux_os.append(vuln)
+            considered.append(vuln["id"])
+        else:
+            if vuln["id"] not in considered:
+                srv.append(vuln)
+                considered.append(vuln["id"])
     
     win = win_os+srv
     lin = linux_os+srv
