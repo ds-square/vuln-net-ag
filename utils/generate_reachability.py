@@ -6,46 +6,59 @@ from utils.dump_nvd import get_pool_vulnerabilities
 import models.NetworkModel as net
 
 def build_lan_topology(percentage_link,N):
+    
+    isLan2 = True if len(N)>10 else False
+    
+    if len(N)<=4:
+        node_lan = len(N)
+        return nx.complete_graph(N, nx.DiGraph())
+    elif len(N)>4 and len(N)<=8:
+        node_lan = len(N)
+        DMZ = nx.complete_graph(N[0:2], nx.DiGraph())
+        ALAN = nx.complete_graph(N[2:4], nx.DiGraph())
+        LAN1 = nx.complete_graph(N[4:len(N)], nx.DiGraph())
+    elif len(N)>8 and len(N)<=10:
+        node_lan = len(N)
+        DMZ = nx.complete_graph(N[0:3], nx.DiGraph())
+        ALAN = nx.complete_graph(N[3:6], nx.DiGraph())
+        LAN1 = nx.complete_graph(N[6:len(N)], nx.DiGraph())
+    else:
+        node_lan = round(len(N)/4)
+        DMZ = nx.complete_graph(N[0:node_lan], nx.DiGraph())
+        ALAN = nx.complete_graph(N[node_lan+1:2*node_lan], nx.DiGraph())
+        LAN1 = nx.complete_graph(N[2*node_lan+1:3*node_lan], nx.DiGraph())
+        LAN2 = nx.complete_graph(N[3*node_lan+1:len(N)], nx.DiGraph())
+    
     edges=[]
-    node_lan = round(len(N)/4)
-    DMZ = nx.complete_graph(N[0:node_lan], nx.DiGraph())
-    ALAN = nx.complete_graph(N[node_lan+1:2*node_lan], nx.DiGraph())
-    LAN1 = nx.complete_graph(N[2*node_lan+1:3*node_lan], nx.DiGraph())
-    LAN2 = nx.complete_graph(N[3*node_lan+1:len(N)], nx.DiGraph())
-
     for dmz_nodes in DMZ.nodes:
-        for lan1_nodes in LAN1.nodes:
-            edges.append((dmz_nodes,lan1_nodes))
-            edges.append((lan1_nodes,dmz_nodes))
-    for dmz_nodes in DMZ.nodes:
-        for lan2_nodes in LAN2.nodes:
-            edges.append((dmz_nodes,lan2_nodes))
-            edges.append((lan2_nodes,dmz_nodes))
+        for alan_nodes in ALAN.nodes:
+            edges.append((alan_nodes,dmz_nodes))
+            edges.append((dmz_nodes,alan_nodes))    
     
     max_edges = percentage_link*node_lan*node_lan
     count_lan1 = 0
     for alan_nodes in ALAN.nodes:
         for lan1_node in LAN1.nodes:
-            if not count_lan1 >= max_edges:
+            if isLan2 and not count_lan1 >= max_edges:
                 edges.append((alan_nodes,lan1_node))
+                edges.append((lan1_node,alan_nodes))
                 count_lan1+=1
-    count_lan2 = 0
-    for alan_nodes in ALAN.nodes:
-        for lan2_node in LAN2.nodes:
-            if not count_lan2 >= max_edges:
-                edges.append((alan_nodes,lan2_node))
-                count_lan2+=1
-    count_alan=0
-    for dmz_nodes in DMZ.nodes:
+            else:
+                edges.append((alan_nodes,lan1_node))
+                edges.append((lan1_node,alan_nodes))
+    if isLan2:
+        edges+=LAN2.edges
+        count_lan2 = 0
         for alan_nodes in ALAN.nodes:
-            if not count_alan >= max_edges:
-                edges.append((alan_nodes,dmz_nodes))
-                count_alan+=1
+            for lan2_node in LAN2.nodes:
+                if not count_lan2 >= max_edges:
+                    edges.append((alan_nodes,lan2_node))
+                    edges.append((lan2_node,alan_nodes))
+                    count_lan2+=1
     
     edges+=DMZ.edges
     edges+=ALAN.edges
     edges+=LAN1.edges
-    edges+=LAN2.edges
     G = nx.DiGraph()
     G.add_edges_from(edges)
     return G
@@ -115,10 +128,10 @@ def build_distribution(distro, num_nodes, num_vulns,nodes_list):
 """
 Assign vulnerabilities per host considering diversity distribution
 """
-def build_diversity(vulns_per_host,percentage_div):
+def build_diversity(vulns_per_host,percentage_div,vulnerabilities):
     max_vulns = max(vulns_per_host.values())
     tot_vulns = sum(vulns_per_host.values())
-    full_pool_win, full_pool_lin = get_pool_vulnerabilities(tot_vulns)
+    full_pool_win, full_pool_lin = get_pool_vulnerabilities(tot_vulns,vulnerabilities)
 
     vuln_inventory = []
     dict_vuln_host = {}
@@ -183,7 +196,7 @@ def randomMAC():
         random.randint(0, 255),
         random.randint(0, 255))
 
-def write_reachability(base_folder,filename):
+def write_reachability(base_folder,filename,vulnerabilities):
     params = filename.split(".json")[0].split("_")
     nhost=int(params[0])
     nvuln=int(params[1])
@@ -196,9 +209,10 @@ def write_reachability(base_folder,filename):
     edges=[]
     for edge in G.edges():
         edges.append({"host_link": list(edge)})
+    # nx.write_graphml(G,"networks_graph/"+filename+".graphml")
 
     vulns_per_node = build_distribution(distro,nhost,nvuln,G.nodes)
-    vuln_inventory, vulns_by_host = build_diversity(vulns_per_node,diversity)
+    vuln_inventory, vulns_by_host = build_diversity(vulns_per_node,diversity,vulnerabilities)
     devices = []
     for k in vulns_by_host:
         for vuln in vuln_inventory:

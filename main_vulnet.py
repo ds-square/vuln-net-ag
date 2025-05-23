@@ -1,7 +1,7 @@
 import os, logging, sys
 from pebble import ProcessPool
 
-from utils.dump_nvd import dump
+from utils.dump_nvd import dump, read_vulnerabilities
 from utils.generate_reachability import write_reachability
 import config
 
@@ -12,13 +12,13 @@ logfile = 'logging/network.log'
 """
 Generate the benchmark of networks in "network" folder
 """
-def generate_network(filename):
+def generate_network(filename,vulnerabilities):
     logging.basicConfig(filename=logfile, level=logging.DEBUG, filemode='w', format='%(asctime)s - %(levelname)s: %(message)s')
     
     if not os.path.exists(config.NETWORK_FOLDER): os.makedirs(config.NETWORK_FOLDER)
     generated_files = os.listdir(config.NETWORK_FOLDER)
     if filename not in generated_files:
-        write_reachability(config.NETWORK_FOLDER,filename)
+        write_reachability(config.NETWORK_FOLDER,filename,vulnerabilities)
         logging.info("Generated network: %s (total generated files - %d)", filename, len(generated_files))
     else:
         logging.debug("[Already Generated]: %s (total generated files - %d)", filename, len(generated_files))
@@ -31,7 +31,9 @@ if __name__ == "__main__":
     proposed syntetic inventory
     """
     # dump()
-    print("Starting benchmark. Reading big CVE files may require some time...")
+    print("Starting benchmark. Reading big CVE files may require time...")
+    vulnerabilities = read_vulnerabilities()
+    print("...File Read")
 
     """
     Create networks for reachability graphs
@@ -43,7 +45,7 @@ if __name__ == "__main__":
                 for d in config.distro:
                     for u in config.diversity:
                         filename = str(n)+'_'+str(v)+'_'+t+'_'+d+'_'+str(u)+'.json'
-                        generate_network(filename)
+                        generate_network(filename,vulnerabilities)
     #                     filenames.append(filename)
     
     # """

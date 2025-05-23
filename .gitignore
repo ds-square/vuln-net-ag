@@ -3,6 +3,7 @@
 /logging
 /attack_graphs
 /networks
+/networks_graph
 /real_network
 /real_paths
 /nvd_dump/cve.json

@@ -106,11 +106,15 @@ def cve_dump(cpe_file, cve_file, key=config.nvd_key):
     return len(pull_vulns)
 
 
-def get_pool_vulnerabilities(tot_vulns):
-    considered=[]
+def read_vulnerabilities():
     with open(config.cve_dump_file) as cve_f:
         vulnerabilities = json.load(cve_f)["vulnerabilities"]
-    
+    return vulnerabilities
+
+def get_pool_vulnerabilities(tot_vulns,vulnerabilities):
+    considered=[]
+    # with open(config.cve_dump_file) as cve_f:
+    #     vulnerabilities = json.load(cve_f)["vulnerabilities"]
     win_os = []
     linux_os = []
     srv=[]
