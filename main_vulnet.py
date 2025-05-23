@@ -31,6 +31,7 @@ if __name__ == "__main__":
     proposed syntetic inventory
     """
     # dump()
+    print("Starting benchmark. Reading big CVE files may require some time...")
 
     """
     Create networks for reachability graphs

@@ -70,7 +70,7 @@ def build_topology(topology,nodes):
 """
 Generate vulnerabilities distribution using numpy
 """
-def build_distribution(distro, num_nodes, num_vulns):
+def build_distribution(distro, num_nodes, num_vulns,nodes_list):
     tot_vuln = num_nodes*num_vulns
 
     if distro == "bernoulli":
@@ -78,33 +78,37 @@ def build_distribution(distro, num_nodes, num_vulns):
         samples2 = list(np.random.binomial(num_vulns, 0.2, size=round(num_nodes/2)))
         samples = samples1+samples2
         vulns_distro = {}
-        i=1
-        for s in samples:
-            vulns_distro[i] = round(s/sum(samples)*tot_vuln)
-            i+=1
+        # i=1
+        for i in nodes_list:
+            for s in samples:
+                vulns_distro[i] = round(s/sum(samples)*tot_vuln)
+                # i+=1
         return vulns_distro
 
     elif distro == "binomial":
         samples = list(np.random.binomial(num_vulns, 0.5, size=num_nodes))
         vulns_distro = {}
-        i=1
-        for s in samples:
-            vulns_distro[i] = round(s/sum(samples)*tot_vuln)
-            i+=1
+        # i=1
+        for i in nodes_list:
+            for s in samples:
+                vulns_distro[i] = round(s/sum(samples)*tot_vuln)
+                # i+=1
         return vulns_distro
     
     elif distro == 'poisson':
         samples = list(np.random.poisson(num_vulns, size=num_nodes))
         vulns_distro = {}
-        i=1
-        for s in samples:
-            vulns_distro[i] = round(s/sum(samples)*tot_vuln)
-            i+=1
+        # i=1
+        for i in nodes_list:
+            for s in samples:
+                vulns_distro[i] = round(s/sum(samples)*tot_vuln)
+                # i+=1
         return vulns_distro
     
     else: 
         vulns_distro = {}
-        for i in range(1,num_nodes+1): vulns_distro[i] = num_vulns
+        # for i in range(1,num_nodes+1): vulns_distro[i] = num_vulns
+        for i in nodes_list: vulns_distro[i] = num_vulns
         return vulns_distro
 
 
@@ -193,8 +197,7 @@ def write_reachability(base_folder,filename):
     for edge in G.edges():
         edges.append({"host_link": list(edge)})
 
-
-    vulns_per_node = build_distribution(distro,nhost,nvuln)
+    vulns_per_node = build_distribution(distro,nhost,nvuln,G.nodes)
     vuln_inventory, vulns_by_host = build_diversity(vulns_per_node,diversity)
     devices = []
     for k in vulns_by_host:
