@@ -67,16 +67,16 @@ def build_lan_topology(percentage_link,N):
 Generate different network topology using networkx
 """
 def build_topology(topology,nodes):
-    if topology == 'mesh': G = nx.complete_graph(nodes, nx.DiGraph())
+    if topology == 'mesh': G = nx.complete_graph(list(range(0,len(nodes))), nx.DiGraph())
     elif topology == 'random': G = nx.gnp_random_graph(len(nodes),0.5)
-    elif topology == 'star': G = nx.star_graph(nodes)
-    elif topology == 'ring': G = nx.cycle_graph(nodes, nx.DiGraph())
+    elif topology == 'star': G = nx.star_graph(list(range(0,len(nodes))))
+    elif topology == 'ring': G = nx.cycle_graph(list(range(0,len(nodes))), nx.DiGraph())
     elif topology == 'tree': G = nx.random_tree(len(nodes))
     elif topology == 'powerlaw': G = nx.powerlaw_cluster_graph(len(nodes),round(len(nodes)/2),0.5)
     elif 'lan' in topology:
-        if '0' in topology: G = build_lan_topology(0,nodes)
-        elif '25' in topology: G = build_lan_topology(0.25,nodes)
-        else: G = build_lan_topology(0.5,nodes)
+        if '0' in topology: G = build_lan_topology(0,list(range(0,len(nodes))))
+        elif '25' in topology: G = build_lan_topology(0.25,list(range(0,len(nodes))))
+        else: G = build_lan_topology(0.5,list(range(0,len(nodes))))
     # nx.write_graphml_lxml(G, topology+".graphml")
     return G
 
@@ -208,7 +208,8 @@ def write_reachability(base_folder,filename,vulnerabilities):
     G = build_topology(topology,nodes)
     edges=[]
     for edge in G.edges():
-        edges.append({"host_link": list(edge)})
+        if {"host_link": [edge[0],edge[1]]} not in edges: edges.append({"host_link": [edge[0],edge[1]]})
+        if {"host_link": [edge[1],edge[0]]} not in edges: edges.append({"host_link": [edge[1],edge[0]]})
     # nx.write_graphml(G,"networks_graph/"+filename+".graphml")
 
     vulns_per_node = build_distribution(distro,nhost,nvuln,G.nodes)
