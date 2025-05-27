@@ -25,9 +25,9 @@ def build_lan_topology(percentage_link,N):
     else:
         node_lan = round(len(N)/4)
         DMZ = nx.complete_graph(N[0:node_lan], nx.DiGraph())
-        ALAN = nx.complete_graph(N[node_lan+1:2*node_lan], nx.DiGraph())
-        LAN1 = nx.complete_graph(N[2*node_lan+1:3*node_lan], nx.DiGraph())
-        LAN2 = nx.complete_graph(N[3*node_lan+1:len(N)], nx.DiGraph())
+        ALAN = nx.complete_graph(N[node_lan:2*node_lan], nx.DiGraph())
+        LAN1 = nx.complete_graph(N[2*node_lan:3*node_lan], nx.DiGraph())
+        LAN2 = nx.complete_graph(N[3*node_lan:len(N)], nx.DiGraph())
     
     edges=[]
     for dmz_nodes in DMZ.nodes:

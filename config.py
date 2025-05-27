@@ -14,6 +14,11 @@ nvulns = [5,10,25,50,75,100,150,250,500]
 topologies = ['mesh','random','star','ring','tree','powerlaw','lan0','lan25','lan50']
 distro = ['uniform','poisson','bernoulli','binomial']
 diversity = [0,0.25,0.5,0.75,1]
+# nhosts = [50]
+# nvulns = [5,10,20]
+# topologies = ['lan25']
+# distro = ['uniform']
+# diversity = [0.25,1]
 
 ### [AttackGraph]
 timeout = 7000
