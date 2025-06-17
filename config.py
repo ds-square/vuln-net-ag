@@ -7,6 +7,7 @@ nvd_key = None # Put your NVD key here
 num_cores = 3
 
 ### [Vulnerable Network Generator]
+GATEWAYS=['Netgear Nighthawk','Cisco ISR','Netgear CAX80','Google Nest','Ubiquiti EdgeRouter','MikroTik','Fortinet']
 OS=['Windows 10','Ubuntu Linux 22.10', 'Debian Linux 11']
 SERVICES=['MySQL','PostgreSQL','Neo4','Azure','AWS','Apache','HTTP Web Server','nginx']
 nhosts = [5,10,25,50,75,100,150,250,500]

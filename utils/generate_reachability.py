@@ -77,8 +77,19 @@ def build_topology(topology,nodes):
         if '0' in topology: G = build_lan_topology(0,list(range(0,len(nodes))))
         elif '25' in topology: G = build_lan_topology(0.25,list(range(0,len(nodes))))
         else: G = build_lan_topology(0.5,list(range(0,len(nodes))))
-    # nx.write_graphml_lxml(G, topology+".graphml")
-    return G
+    
+    num_routers=0
+    if len(nodes)<=30: num_routers=1
+    elif len(nodes)>30 and len(nodes)<=120: num_routers=2
+    elif len(nodes)>120 and len(nodes)<=250: num_routers=3
+    elif len(nodes)>250 and len(nodes)<=500: num_routers=4
+    else: num_routers=5
+    
+    centrality = nx.closeness_centrality(G)
+    router_nodes = sorted(centrality.items(), key=lambda x: x[1], reverse=True)[:num_routers]
+    list_gateways = []
+    for node, score in router_nodes: list_gateways.append(node)
+    return G, list_gateways
 
 """
 Generate vulnerabilities distribution using numpy
@@ -128,10 +139,10 @@ def build_distribution(distro, num_nodes, num_vulns,nodes_list):
 """
 Assign vulnerabilities per host considering diversity distribution
 """
-def build_diversity(vulns_per_host,percentage_div,vulnerabilities):
+def build_diversity(vulns_per_host,percentage_div,vulnerabilities,gateway_nodes):
     max_vulns = max(vulns_per_host.values())
     tot_vulns = sum(vulns_per_host.values())
-    full_pool_win, full_pool_lin = get_pool_vulnerabilities(tot_vulns,vulnerabilities)
+    full_pool_win, full_pool_lin, full_pool_gateway = get_pool_vulnerabilities(tot_vulns,vulnerabilities)
 
     vuln_inventory = []
     dict_vuln_host = {}
@@ -139,23 +150,35 @@ def build_diversity(vulns_per_host,percentage_div,vulnerabilities):
         equal_pool = full_pool_win[0:max_vulns]
         for k in vulns_per_host.keys():
             n_vuln = vulns_per_host[k]
-            vulnerabilities = equal_pool[0:n_vuln]
-            vuln_inventory+=vulnerabilities
-            dict_vuln_host[k] = [o["id"] for o in vulnerabilities]
+            if k in gateway_nodes:
+                vulnerabilities = full_pool_gateway[0:n_vuln]
+                vuln_inventory+=vulnerabilities
+                dict_vuln_host[k] = [o["id"] for o in vulnerabilities]
+            else:
+                vulnerabilities = equal_pool[0:n_vuln]
+                vuln_inventory+=vulnerabilities
+                dict_vuln_host[k] = [o["id"] for o in vulnerabilities]
 
     elif percentage_div == 1:
         diverse_pool_w = full_pool_win[0:tot_vulns]
         diverse_pool_l = full_pool_lin[0:tot_vulns]
         last_index = 0
+        last_index_gateway = 0
         for k in vulns_per_host.keys():
-            if k%2==0: diverse_pool=diverse_pool_w
-            else: diverse_pool=diverse_pool_l
-            
             n_vuln = vulns_per_host[k]
-            vulnerabilities = diverse_pool[last_index:last_index+n_vuln]
-            vuln_inventory+=vulnerabilities
-            dict_vuln_host[k] = [o["id"] for o in vulnerabilities]
-            last_index+=n_vuln
+            if k in gateway_nodes:
+                vulnerabilities = full_pool_gateway[last_index_gateway:last_index_gateway+n_vuln]
+                vuln_inventory+=vulnerabilities
+                dict_vuln_host[k] = [o["id"] for o in vulnerabilities]
+                last_index_gateway+=n_vuln
+            else:
+                if k%2==0: diverse_pool=diverse_pool_w
+                else: diverse_pool=diverse_pool_l
+                
+                vulnerabilities = diverse_pool[last_index:last_index+n_vuln]
+                vuln_inventory+=vulnerabilities
+                dict_vuln_host[k] = [o["id"] for o in vulnerabilities]
+                last_index+=n_vuln
 
     else:
         split_index = round(max_vulns*(1-percentage_div))+1
@@ -163,20 +186,27 @@ def build_diversity(vulns_per_host,percentage_div,vulnerabilities):
         diverse_pool_w = full_pool_win[split_index+1:]
         diverse_pool_l = full_pool_lin[split_index+1:]
         last_index = 0
+        last_index_gateway = 0
         for k in vulns_per_host.keys():
-            if k%2==0: diverse_pool=diverse_pool_w
-            else: diverse_pool=diverse_pool_l
-            
-            n_vuln = vulns_per_host[k]
-            sub_split_equal = round(n_vuln*(1-percentage_div))
-            sub_split_diverse = round(n_vuln*percentage_div)
-            
-            vulns_equal = equal_pool[0:sub_split_equal]
-            vulns_diverse = diverse_pool[last_index:last_index+sub_split_diverse]
-            vulnerabilities = vulns_equal+vulns_diverse
-            vuln_inventory+=vulnerabilities
-            dict_vuln_host[k] = [o["id"] for o in vulnerabilities]
-            last_index+=sub_split_diverse
+            if k in gateway_nodes:
+                vulnerabilities = full_pool_gateway[last_index_gateway:last_index_gateway+n_vuln]
+                vuln_inventory+=vulnerabilities
+                dict_vuln_host[k] = [o["id"] for o in vulnerabilities]
+                last_index_gateway+=n_vuln
+            else:
+                if k%2==0: diverse_pool=diverse_pool_w
+                else: diverse_pool=diverse_pool_l
+                
+                n_vuln = vulns_per_host[k]
+                sub_split_equal = round(n_vuln*(1-percentage_div))
+                sub_split_diverse = round(n_vuln*percentage_div)
+                
+                vulns_equal = equal_pool[0:sub_split_equal]
+                vulns_diverse = diverse_pool[last_index:last_index+sub_split_diverse]
+                vulnerabilities = vulns_equal+vulns_diverse
+                vuln_inventory+=vulnerabilities
+                dict_vuln_host[k] = [o["id"] for o in vulnerabilities]
+                last_index+=sub_split_diverse
 
     no_duplicate_ids = []
     no_duplicate_inventory = []
@@ -205,7 +235,7 @@ def write_reachability(base_folder,filename,vulnerabilities):
     diversity=float(params[4])
 
     nodes = list(range(1,nhost+1))
-    G = build_topology(topology,nodes)
+    G, gateway_nodes = build_topology(topology,nodes)
     edges=[]
     for edge in G.edges():
         if {"host_link": [edge[0],edge[1]]} not in edges: edges.append({"host_link": [edge[0],edge[1]]})
@@ -213,7 +243,7 @@ def write_reachability(base_folder,filename,vulnerabilities):
     # nx.write_graphml(G,"networks_graph/"+filename+".graphml")
 
     vulns_per_node = build_distribution(distro,nhost,nvuln,G.nodes)
-    vuln_inventory, vulns_by_host = build_diversity(vulns_per_node,diversity,vulnerabilities)
+    vuln_inventory, vulns_by_host = build_diversity(vulns_per_node,diversity,vulnerabilities,gateway_nodes)
     devices = []
     for k in vulns_by_host:
         for vuln in vuln_inventory:
@@ -225,7 +255,7 @@ def write_reachability(base_folder,filename,vulnerabilities):
         devices.append({
             "id": str(uuid.uuid4()),
             "hostname": k,
-            "type": "workstation",
+            "type": "gateway" if k in gateway_nodes else "workstation",
             "network_interfaces": [net.NetworkInterface("75.62.132."+str(60+k),randomMAC(),[port_k])]
         })
     

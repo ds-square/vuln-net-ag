@@ -12,7 +12,7 @@ def cpe_dump(cpe_file, key=config.nvd_key):
     else: headers = {'content-type': 'application/json'}
     
     pull_srv=[]
-    for serv in config.OS+config.SERVICES:
+    for serv in config.GATEWAYS+config.OS+config.SERVICES:
         logger.info(f"Retrieving CPE for {serv}")
         
         startIndex=0
@@ -90,6 +90,11 @@ def cve_dump(cpe_file, cve_file, key=config.nvd_key):
                         pull_vulns.append(cveObj)
                     
                     logger.info(f"Found {startIndex} for {cpeName} (Total: {totalResults})")
+                    
+                    with open(cve_file, "w") as outfile:
+                        json_data = json.dumps({"vulnerabilities":pull_vulns},
+                                                default=lambda o: o.__dict__, indent=2)
+                        outfile.write(json_data)
                     break
                 else:
                     logger.error(f"Error retrieving CVE records: {response.status_code} --- Retry temptative: {attempt}")
@@ -118,13 +123,20 @@ def get_pool_vulnerabilities(tot_vulns,vulnerabilities):
     win_os = []
     linux_os = []
     srv=[]
+    gateway=[]
     for vuln in vulnerabilities:
         if "windows" in vuln["cpe"] and vuln["id"] not in considered:
-            considered.append(vuln["id"])
             win_os.append(vuln)
+            considered.append(vuln["id"])
         elif ("ubuntu" in vuln["cpe"] or "debian" in vuln["cpe"]) and vuln["id"] not in considered:
             linux_os.append(vuln)
             considered.append(vuln["id"])
+        elif ("netgear" in vuln["cpe"] or "cisco" in vuln["cpe"] or \
+            "nest" in vuln["cpe"] or "edgerouter" in vuln["cpe"] or \
+            "mikrotik" in vuln["cpe"] or "fortinet" in vuln["cpe"]) and \
+            vuln["id"] not in considered:
+                gateway.append(vuln)
+                considered.append(vuln["id"])
         else:
             if vuln["id"] not in considered:
                 srv.append(vuln)
@@ -132,7 +144,7 @@ def get_pool_vulnerabilities(tot_vulns,vulnerabilities):
     
     win = win_os+srv
     lin = linux_os+srv
-    return win[0:tot_vulns], lin[0:tot_vulns]
+    return win[0:tot_vulns], lin[0:tot_vulns], gateway[0:tot_vulns]
 
 def dump():
     logging.basicConfig(filename=logfile, level=logging.INFO, filemode='w', format='%(asctime)s - %(levelname)s: %(message)s')
