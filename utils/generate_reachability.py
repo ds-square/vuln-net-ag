@@ -188,6 +188,7 @@ def build_diversity(vulns_per_host,percentage_div,vulnerabilities,gateway_nodes)
         last_index = 0
         last_index_gateway = 0
         for k in vulns_per_host.keys():
+            n_vuln = vulns_per_host[k]
             if k in gateway_nodes:
                 vulnerabilities = full_pool_gateway[last_index_gateway:last_index_gateway+n_vuln]
                 vuln_inventory+=vulnerabilities
