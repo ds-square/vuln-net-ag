@@ -1,6 +1,6 @@
 # Behind the Scenes of Attack Graphs: Vulnerable Network Generator for In-Depth Experimental Evaluation of Attack Graph Scalability
 
-The paper is available at: [https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5146092](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5146092).
+The paper is available [here]([https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5146092](https://www.sciencedirect.com/science/article/pii/S0167404825002652?via%3Dihub)).
 
 ## Abstract
 
@@ -97,9 +97,20 @@ Perform the steps of the previous section starting from 3.
 If you use this repository or some parts of the paper, please cite this work as:
 
 ```
-@article{palma5146092behind,
-  title={Behind the Scenes of Attack Graphs: Vulnerable Network Generator for In-Depth Experimental Evaluation of Attack Graph Scalability},
-  author={Palma, Alessandro and Bonomi, Silvia},
-  journal={Available at SSRN 5146092}
+@article{palma_behind_2025,
+	title = {Behind the scenes of attack graphs: {Vulnerable} network generator for in-depth experimental evaluation of attack graph scalability},
+	volume = {157},
+	issn = {0167-4048},
+	shorttitle = {Behind the scenes of attack graphs},
+	url = {https://www.sciencedirect.com/science/article/pii/S0167404825002652},
+	doi = {10.1016/j.cose.2025.104576},
+	abstract = {An Attack Graph represents potential paths for attackers to compromise a computer network and security analysts use it to pinpoint vulnerable areas for cyber risk assessment. Due to their combinatorial complexity, designing scalable algorithms for generating these graphs without sacrificing their accuracy remains a challenge. Previous research focused on improving scalability, but evaluations often overlooked key parameters beyond network size, thus raising the natural question of their application in real-world settings. One of the main causes is the lack of data that the cybersecurity community faces in different areas, and cyber risk assessment in particular. To address this problem and support the comprehensive evaluation of attack graph algorithms, we introduce a dataset generator of vulnerable networks, which includes realistic reachability graphs and vulnerability inventories. This enables the design of an analytical framework to assess attack graph scalability comprehensively, considering diverse network and vulnerability dimensions. According to the proposed framework, we perform an in-depth experimental evaluation of the time and space complexities of attack graphs, offering novel insights into the critical parameters affecting them, and we extensively discuss how they inform and benefit future approaches.},
+	urldate = {2025-07-02},
+	journal = {Computers \& Security},
+	author = {Palma, Alessandro and Bonomi, Silvia},
+	month = oct,
+	year = {2025},
+	keywords = {Attack graph, Complexity analysis, Dataset generation, Experimental evaluation},
+	pages = {104576},
 }
 ```
