@@ -1,6 +1,6 @@
 # Behind the Scenes of Attack Graphs: Vulnerable Network Generator for In-Depth Experimental Evaluation of Attack Graph Scalability
 
-The paper is available [here]([https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5146092](https://www.sciencedirect.com/science/article/pii/S0167404825002652?via%3Dihub)).
+The paper is available [here](https://www.sciencedirect.com/science/article/pii/S0167404825002652?via%3Dihub).
 
 ## Abstract
 
